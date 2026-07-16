@@ -1,0 +1,1 @@
+Worker'in navigator)navigator.serviceWorker.register('./sw.js').catch(console.warn)}).catch(e=>{console.error(e);$('#banner').hidden=false;$('#banner').textContent='The tracker could not start. Reload the page or restore a valid JSON backup.'});
