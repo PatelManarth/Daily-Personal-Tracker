@@ -1,0 +1,10 @@
+{
+  "name": "daily-personal-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first personal fat-loss tracking PWA for Manarth Patel.",
+  "scripts": {
+    "test": "node --check app.js && node --check charts.js && node --check data.js && node --check db.js && node --check sw.js && node tests/data-smoke.mjs"
+  }
+}
