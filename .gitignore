@@ -1,0 +1,16 @@
+# Personal exports must never be committed.
+manarth-tracker-backup-*.json
+daily-logs-*.csv
+weekly-summaries-*.csv
+weight-*.csv
+measurements-*.csv
+adjustments-*.csv
+*.ics
+backups/
+exports/
+
+# Local editor and operating-system files.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
