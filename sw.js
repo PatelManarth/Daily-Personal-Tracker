@@ -1,16 +1,17 @@
-const CACHE = 'manarth-tracker-v2';
-const ASSETS = ['./','./index.html','./styles.css','./app.js','./db.js','./data.js','./charts.js','./manifest.webmanifest','./icon.svg'];
+const CACHE = 'manarth-tracker-v3';
+const ASSETS = [
+  './','./index.html','./styles.css','./app.js','./db.js','./data.js','./data-core.js',
+  './data-breakfast.js','./data-lunch.js','./data-snacks.js','./charts.js',
+  './app-part-1.txt','./app-part-2.txt','./app-part-3.txt','./app-part-4.txt','./app-part-5.txt',
+  './manifest.webmanifest','./icon.svg'
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))))
-      .then(() => self.clients.claim())
-  );
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim()));
 });
 
 self.addEventListener('fetch', (event) => {
