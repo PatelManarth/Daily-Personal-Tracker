@@ -5,6 +5,6 @@
   "type": "module",
   "description": "Local-first personal fat-loss tracking PWA for Manarth Patel.",
   "scripts": {
-    "test": "node --check app.js && node --check charts.js && node --check data.js && node --check db.js && node --check sw.js && node tests/data-smoke.mjs"
+    "test": "node --check app.js && node --check charts.js && node --check data.js && node --check data-core.js && node --check data-breakfast.js && node --check data-lunch.js && node --check data-snacks.js && node --check db.js && node --check sw.js && node tests/data-smoke.mjs && node tests/runtime-smoke.mjs"
   }
 }
