@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Manarth's Daily Personal Tracker",
+  "short_name": "Daily Tracker",
+  "description": "Local-first meal, weight, walking, recovery and weekly progress tracker.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f6",
+  "theme_color": "#0f766e",
+  "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle"],
+  "icons": [
+    { "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
