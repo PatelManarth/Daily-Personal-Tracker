@@ -18,27 +18,28 @@ The application follows the **Dr. Vance Flexible Living Fat-Loss Handbook v3.1**
 
 **Cronometer and current package labels control the final daily totals.**
 
-Recipe values in this app are editable planning estimates. The application does not attempt to recreate Cronometer's food database.
+Recipe values in this app are planning estimates. The application does not attempt to recreate Cronometer's food database.
 
-## Included features
+## Current MVP
 
 - Today dashboard focused on immediate actions
 - One editable daily record per local calendar date
 - Normal-condition morning weigh-in validation
 - Seven-day average, two-week trend and required trajectory
 - Complete B1-B9, L1-L10, S1-S10 and T1-T3 recipe library
-- Editable recipe estimates and branded product settings
 - Meal builder with neutral planning warnings
 - Morning walking, steps, structured movement and pain tracking
 - Sleep, water, hunger, energy, stress and digestion tracking
-- Monday-Sunday weekly summaries and guided Sunday check-ins
-- Body measurements and charts
+- Monday-Sunday summaries and guided Sunday check-ins
+- Body-measurement records
 - Permanent adjustment history
-- JSON backup and restore with a pre-import backup
+- JSON backup and validated restore with a pre-import backup
 - Separate CSV coaching exports
 - Daily-routine iCalendar export
 - Light/dark mode, large tap targets and phone-first layout
 - IndexedDB local storage and service-worker offline support
+
+Advanced chart screens, editable product-label overrides, editable recipe estimates and the future Cronometer CSV mapper remain later-version enhancements.
 
 ## Privacy model
 
@@ -48,7 +49,7 @@ Clearing browser data can erase records. Export a JSON backup every Sunday.
 
 ## Run locally
 
-No build step or paid service is required.
+No paid service is required.
 
 ```bash
 python -m http.server 8000
