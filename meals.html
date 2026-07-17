@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Meal Library | Manarth's Daily Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="meals.css">
+</head>
+<body class="meal-library-page">
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Daily Personal Tracker</p>
+      <h1>Meal Library</h1>
+      <p class="muted">Pick what to cook using time, ingredients and macros.</p>
+    </div>
+    <div class="header-actions">
+      <a class="button secondary header-home" href="index.html#today">Today</a>
+      <button id="theme" class="icon-button" aria-label="Toggle light or dark mode">◐</button>
+    </div>
+  </header>
+
+  <nav class="main-nav app-link-nav" aria-label="Main navigation">
+    <a class="nav-button" href="index.html#today"><span class="nav-icon">⌂</span><span>Today</span></a>
+    <a class="nav-button" href="index.html#daily"><span class="nav-icon">✎</span><span>Log</span></a>
+    <a class="nav-button active" href="meals.html" aria-current="page"><span class="nav-icon">🍽</span><span>Meals</span></a>
+    <a class="nav-button" href="index.html#weekly"><span class="nav-icon">▦</span><span>Weekly</span></a>
+    <a class="nav-button" href="index.html#measurements"><span class="nav-icon">↔</span><span>Measure</span></a>
+    <a class="nav-button" href="index.html#adjustments"><span class="nav-icon">⇄</span><span>Adjust</span></a>
+    <a class="nav-button" href="index.html#settings"><span class="nav-icon">⚙</span><span>Settings</span></a>
+  </nav>
+
+  <main class="meal-library-main">
+    <section class="meal-library-hero">
+      <div>
+        <p class="eyebrow">Decision-first meal planning</p>
+        <h2>What should I cook?</h2>
+        <p>See the important information before opening a recipe: total prep/cook time, main ingredients, calories, protein, carbs, fat and storage needs.</p>
+      </div>
+      <a class="button secondary" href="#meal-planner">Jump to today's planner</a>
+    </section>
+
+    <section class="meal-browser-controls" aria-label="Meal filters">
+      <div class="meal-category-tabs" role="group" aria-label="Meal category">
+        <button class="meal-category-button active" type="button" data-category="All" aria-pressed="true">All</button>
+        <button class="meal-category-button" type="button" data-category="Breakfast" aria-pressed="false">Breakfast</button>
+        <button class="meal-category-button" type="button" data-category="Lunch" aria-pressed="false">Lunch</button>
+        <button class="meal-category-button" type="button" data-category="Snack" aria-pressed="false">Snack</button>
+        <button class="meal-category-button" type="button" data-category="Late top-up" aria-pressed="false">Top-up</button>
+      </div>
+
+      <div class="meal-search-grid">
+        <label>Search meals
+          <input id="meal-search" type="search" placeholder="Example: tofu, sandwich, khichdi">
+        </label>
+        <label>Ingredients I already have
+          <input id="ingredient-filter" type="search" placeholder="Comma-separated: tofu, bread">
+        </label>
+        <label>Sort by
+          <select id="meal-sort">
+            <option value="code">Handbook order</option>
+            <option value="quickest">Quickest first</option>
+            <option value="protein">Highest protein</option>
+            <option value="calories-low">Lowest calories</option>
+            <option value="favourites">Favourites first</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="meal-filter-row">
+        <label class="filter-toggle"><input id="quick-only" type="checkbox">Quick / no-cook only</label>
+        <label class="filter-toggle"><input id="high-protein-only" type="checkbox">At least 35 g protein</label>
+        <label class="filter-toggle"><input id="favourites-only" type="checkbox">Favourites only</label>
+        <button id="clear-meal-filters" class="button ghost" type="button">Clear filters</button>
+      </div>
+    </section>
+
+    <div class="meal-results-heading">
+      <div>
+        <p id="meal-result-count" class="eyebrow">Meals</p>
+        <h2>Choose an option</h2>
+      </div>
+      <p class="authority-inline">Planning estimates only. Cronometer and current package labels control final totals.</p>
+    </div>
+    <section id="meal-results" class="meal-decision-grid" aria-live="polite"></section>
+
+    <section id="meal-planner" class="meal-planner-panel">
+      <div class="section-heading meal-planner-heading">
+        <div>
+          <p class="eyebrow">Build the day</p>
+          <h2>Selected meals</h2>
+          <p class="muted">Choose one breakfast, one lunch, one snack and zero or one top-up.</p>
+        </div>
+        <label class="planner-date">Plan date<input id="meal-date" type="date"></label>
+      </div>
+
+      <div class="form-grid meal-plan-selects">
+        <label>Breakfast<select id="meal-breakfast"></select></label>
+        <label>Lunch<select id="meal-lunch"></select></label>
+        <label>Snack<select id="meal-snack"></select></label>
+        <label>Late top-up<select id="meal-topup"></select></label>
+      </div>
+      <div id="meal-plan-totals" class="meal-plan-totals"></div>
+      <div id="meal-plan-warnings" class="notice-list"></div>
+      <div class="planner-actions">
+        <button id="save-meal-plan" class="button primary" type="button">Save selected meals</button>
+        <button id="copy-plan-tomorrow" class="button secondary" type="button">Save same plan for tomorrow</button>
+        <a class="button ghost" href="index.html#daily">Open full daily log</a>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="recipe-dialog">
+    <div id="recipe-detail"></div>
+    <div class="dialog-actions sticky-dialog-actions">
+      <button class="button secondary" type="button" onclick="this.closest('dialog').close()">Close</button>
+      <button id="dialog-use-meal" class="button primary" type="button">Choose meal</button>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="meals-page.js"></script>
+</body>
+</html>
