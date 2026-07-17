@@ -1,6 +1,6 @@
-const CACHE = 'manarth-tracker-v3';
+const CACHE = 'manarth-tracker-v4';
 const ASSETS = [
-  './','./index.html','./styles.css','./app.js','./db.js','./data.js','./data-core.js',
+  './','./index.html','./meals.html','./styles.css','./meals.css','./app.js','./navigation.js','./meals-page.js','./db.js','./data.js','./data-core.js',
   './data-breakfast.js','./data-lunch.js','./data-snacks.js','./charts.js',
   './app-part-1.txt','./app-part-2.txt','./app-part-3.txt','./app-part-4.txt','./app-part-5.txt',
   './manifest.webmanifest','./icon.svg'
