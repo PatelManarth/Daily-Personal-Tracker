@@ -24,7 +24,8 @@ async function init() {
   [...documentCopy.body.children].forEach((child) => wrapper.appendChild(document.importNode(child, true)));
   $('#page-root').appendChild(wrapper);
 
-  wrapper.querySelector('.app-header')?.remove();
+  const legacyHeader = wrapper.querySelector('.app-header');
+  if (legacyHeader) legacyHeader.hidden = true;
   const legacyNav = wrapper.querySelector('#nav');
   if (legacyNav) legacyNav.hidden = true;
 
@@ -33,7 +34,7 @@ async function init() {
   window.setTimeout(() => {
     wrapper.querySelectorAll('.view').forEach((view) => view.classList.toggle('active', view.id === page));
     window.scrollTo(0, 0);
-  }, 150);
+  }, 180);
 }
 
 init().catch((error) => {
