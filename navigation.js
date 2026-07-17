@@ -1,36 +1,37 @@
+const ITEMS = [
+  ['today', 'index.html', '⌂', 'Today'],
+  ['daily', 'daily.html', '✎', 'Log'],
+  ['meals', 'meals.html', '🍽', 'Meals'],
+  ['weekly', 'weekly.html', '▦', 'Weekly'],
+  ['measurements', 'measurements.html', '↔', 'Measure'],
+  ['adjustments', 'adjustments.html', '⇄', 'Adjust'],
+  ['settings', 'settings.html', '⚙', 'Settings'],
+];
+
 export function setupNavigation() {
-  const labels = {
-    today: ['⌂', 'Today'],
-    daily: ['✎', 'Log'],
-    meals: ['🍽', 'Meals'],
-    weekly: ['▦', 'Weekly'],
-    measurements: ['↔', 'Measure'],
-    adjustments: ['⇄', 'Adjust'],
-    settings: ['⚙', 'Settings'],
-  };
+  const nav = document.querySelector('#nav');
+  if (nav) {
+    nav.classList.add('app-link-nav');
+    nav.setAttribute('aria-label', 'Main navigation');
+    nav.innerHTML = ITEMS.map(([key, href, icon, label]) => `
+      <a class="nav-button${key === 'today' ? ' active' : ''}" href="${href}"${key === 'today' ? ' aria-current="page"' : ''}>
+        <span class="nav-icon" aria-hidden="true">${icon}</span><span>${label}</span>
+      </a>`).join('');
+  }
 
   const style = document.createElement('style');
   style.textContent = `
-    .nav-button .nav-icon{display:none;font-size:1rem;line-height:1}
-    .app-link-nav a.nav-button{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:.35rem}
+    .app-link-nav a.nav-button{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:.38rem}
+    .app-link-nav .nav-icon{display:inline-block;font-size:1rem;line-height:1}
     .meal-shortcut{display:inline-flex;align-items:center;gap:.35rem;margin-top:.7rem;text-decoration:none}
     .meal-fieldset-link{float:right;margin-top:-.45rem;text-decoration:none;font-size:.82rem;font-weight:800;color:var(--primary)}
     @media(max-width:720px){
-      .main-nav{justify-content:space-around;gap:.1rem;overflow-x:auto}
-      .nav-button{display:grid;place-items:center;gap:.15rem;min-width:62px;padding:.4rem .45rem;font-size:.72rem}
-      .nav-button .nav-icon{display:block}
-      .nav-button span:last-child{display:block}
+      .app-link-nav{justify-content:flex-start;gap:.1rem;overflow-x:auto}
+      .app-link-nav a.nav-button{display:grid;place-items:center;gap:.15rem;min-width:62px;padding:.4rem .45rem;font-size:.72rem}
+      .app-link-nav .nav-icon{display:block}
     }
   `;
   document.head.appendChild(style);
-
-  document.querySelectorAll('#nav [data-view]').forEach((button) => {
-    const view = button.dataset.view;
-    const [icon, label] = labels[view] || ['', button.textContent];
-    button.innerHTML = `<span class="nav-icon" aria-hidden="true">${icon}</span><span>${label}</span>`;
-    button.setAttribute('aria-label', label);
-    if (view === 'meals') button.onclick = () => { window.location.href = 'meals.html'; };
-  });
 
   const todayMeals = document.querySelector('#today-meals')?.closest('.card');
   if (todayMeals && !todayMeals.querySelector('.meal-shortcut')) {
@@ -41,14 +42,4 @@ export function setupNavigation() {
   if (mealFieldset && !mealFieldset.querySelector('.meal-fieldset-link')) {
     mealFieldset.querySelector('legend').insertAdjacentHTML('afterend', '<a class="meal-fieldset-link" href="meals.html">Browse recipes →</a>');
   }
-
-  function openHashView() {
-    const view = window.location.hash.replace('#', '');
-    if (!view || view === 'meals') return;
-    const button = document.querySelector(`#nav [data-view="${view.replace(/[^a-z-]/gi, '')}"]`);
-    if (button) button.click();
-  }
-
-  window.addEventListener('hashchange', openHashView);
-  window.setTimeout(openHashView, 80);
 }
