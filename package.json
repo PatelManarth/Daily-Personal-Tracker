@@ -1,10 +1,10 @@
 {
   "name": "daily-personal-tracker",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "description": "Local-first personal fat-loss tracking PWA for Manarth Patel.",
   "scripts": {
-    "test": "node --check app.js && node --check navigation.js && node --check meals-page.js && node --check charts.js && node --check data.js && node --check data-core.js && node --check data-breakfast.js && node --check data-lunch.js && node --check data-snacks.js && node --check db.js && node --check sw.js && node tests/data-smoke.mjs && node tests/runtime-smoke.mjs"
+    "test": "node --check app.js && node --check navigation.js && node --check app-shell.js && node --check page-common.js && node --check frame-page.js && node --check today-page.js && node --check meals-shell.js && node --check meals-page.js && node --check charts.js && node --check data.js && node --check data-core.js && node --check data-breakfast.js && node --check data-lunch.js && node --check data-snacks.js && node --check db.js && node --check sw.js && node tests/data-smoke.mjs && node tests/runtime-smoke.mjs && node tests/pages-smoke.mjs"
   }
 }
