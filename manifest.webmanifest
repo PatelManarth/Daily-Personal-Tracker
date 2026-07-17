@@ -10,6 +10,11 @@
   "theme_color": "#0f766e",
   "orientation": "portrait-primary",
   "categories": ["health", "lifestyle"],
+  "shortcuts": [
+    { "name": "Choose meals", "short_name": "Meals", "url": "./meals.html", "icons": [{ "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml" }] },
+    { "name": "Open today", "short_name": "Today", "url": "./index.html#today", "icons": [{ "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml" }] },
+    { "name": "Daily log", "short_name": "Log", "url": "./index.html#daily", "icons": [{ "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml" }] }
+  ],
   "icons": [
     { "src": "icon.svg", "sizes": "192x192", "type": "image/svg+xml", "purpose": "any" },
     { "src": "icon.svg", "sizes": "512x512", "type": "image/svg+xml", "purpose": "any maskable" }
