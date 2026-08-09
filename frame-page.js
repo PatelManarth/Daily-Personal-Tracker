@@ -1,4 +1,4 @@
-import { loadProfile, initializeShell, $, db } from './page-common.js';
+import { loadProfile, initializeShell, $, db, ensureRecipes } from './page-common.js';
 import { ensureShravanRecipes, setupDailyShravanFiltering } from './shravan-phase.js';
 
 const page = document.body.dataset.page;
@@ -12,6 +12,7 @@ const titles = {
 
 async function init() {
   const profile = await loadProfile();
+  await ensureRecipes();
   await ensureShravanRecipes(db);
   const [title, subtitle] = titles[page];
   initializeShell(profile, page, title, subtitle);
