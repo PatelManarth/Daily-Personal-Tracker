@@ -75,7 +75,7 @@ export async function ensureShravanRecipes(db){
 
 export function recipesForPhase(recipes,category,date,settings=DEFAULT_SHRAVAN_SETTINGS){
   const active=isShravanDate(date,settings);
-  if(!active)return recipes.filter(r=>r.category===category&&!hasTag(r,'shravan'));
+  if(!active)return recipes.filter(r=>r.category===category&&!/^(SHB|SHS|SHT)/.test(r.code));
   if(category==='Breakfast')return recipes.filter(r=>r.category==='Breakfast'&&/^SHB/.test(r.code)&&(!r.premiumOptional||settings.showPremium));
   if(category==='Lunch')return recipes.filter(r=>r.category==='Lunch'&&r.grainMealOnly&&/^L(?:10|[1-9])$/.test(r.code));
   if(category==='Snack')return recipes.filter(r=>r.category==='Snack'&&/^SHS/.test(r.code));
@@ -132,7 +132,7 @@ export async function setupDailyShravanFiltering({db,profile,root=document}){
   let note=mealField?.querySelector('.shravan-daily-note');
   if(mealField&&!note){note=document.createElement('div');note.className='notice neutral shravan-daily-note';mealField.insertBefore(note,mealField.children[1]||null)}
   const refresh=()=>{
-    const d=dateInput.value,active=isShravanDate(d,settings);settings={...settings};
+    const d=dateInput.value,active=isShravanDate(d,settings);
     const fields=[['breakfastCode','Breakfast'],['lunchCode','Lunch'],['snackCode','Snack'],['topUpCode','Late top-up']];
     for(const [name,cat] of fields){const el=form.querySelector(`[name="${name}"]`);if(!el)continue;const current=el.value;const list=recipesForPhase(recipes,cat,d,settings);el.innerHTML=optionRows(list,current,active,settings);if(current&&![...el.options].some(o=>o.value===current))el.value='';}
     if(note)note.innerHTML=active?`<strong>Shravan mode.</strong> One L1-L10 grain lunch only. Off-grain breakfast/snack/top-up rules apply.${settings.wheyCompatible?'':' <a href="meals.html">Confirm Shravan-compatible whey in Meals</a> before selecting whey recipes.'}`:`<strong>Normal plan.</strong> Shravan auto-activates from ${SHRAVAN_CONFIG.phase.activeFrom}.`;
