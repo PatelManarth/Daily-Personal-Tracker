@@ -1,7 +1,8 @@
-import { loadProfile, initializeShell, db } from './page-common.js';
+import { loadProfile, initializeShell, db, ensureRecipes } from './page-common.js';
 import { ensureShravanRecipes } from './shravan-phase.js';
 
 const profile = await loadProfile();
+await ensureRecipes();
 await ensureShravanRecipes(db);
 initializeShell(
   profile,
