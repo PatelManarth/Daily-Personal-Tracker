@@ -1,7 +1,8 @@
-const CACHE = 'manarth-tracker-v7';
+const CACHE = 'manarth-tracker-v8';
 const ASSETS = [
   './','./index.html','./daily.html','./meals.html','./weekly.html','./measurements.html','./adjustments.html','./settings.html',
   './styles.css','./pages.css','./meals.css','./app.js','./navigation.js','./app-shell.js','./page-common.js','./frame-page.js','./today-page.js','./meals-shell.js','./meals-page.js',
+  './shravan-core.js','./shravan-breakfast.js','./shravan-snacks.js','./shravan-topups.js','./shravan-phase.js',
   './db.js','./data.js','./data-core.js','./data-breakfast.js','./data-lunch.js','./data-snacks.js','./charts.js',
   './app-part-1.txt','./app-part-2.txt','./app-part-3.txt','./app-part-4.txt','./app-part-5.txt','./manifest.webmanifest','./icon.svg'
 ];
