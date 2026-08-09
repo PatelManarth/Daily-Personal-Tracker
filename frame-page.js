@@ -1,4 +1,5 @@
-import { loadProfile, initializeShell, $ } from './page-common.js';
+import { loadProfile, initializeShell, $, db } from './page-common.js';
+import { ensureShravanRecipes, setupDailyShravanFiltering } from './shravan-phase.js';
 
 const page = document.body.dataset.page;
 const titles = {
@@ -11,6 +12,7 @@ const titles = {
 
 async function init() {
   const profile = await loadProfile();
+  await ensureShravanRecipes(db);
   const [title, subtitle] = titles[page];
   initializeShell(profile, page, title, subtitle);
 
@@ -31,8 +33,9 @@ async function init() {
 
   await import('./app.js');
 
-  window.setTimeout(() => {
+  window.setTimeout(async () => {
     wrapper.querySelectorAll('.view').forEach((view) => view.classList.toggle('active', view.id === page));
+    if (page === 'daily') await setupDailyShravanFiltering({ db, profile, root: wrapper });
     window.scrollTo(0, 0);
   }, 180);
 }
