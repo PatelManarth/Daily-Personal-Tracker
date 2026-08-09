@@ -27,7 +27,10 @@ for(const recipe of SHRAVAN_RECIPES){
 assert(breakfast.filter(r=>r.tags.includes('premium-optional')).map(r=>r.code).sort().join(',')==='SHB10P,SHB9P','Premium breakfast flags changed.');
 const fakeLunches=SHRAVAN_CONFIG.existingRecipeTagUpdates.map(x=>({code:x.code,category:'Lunch',tags:x.addTags,grainMealOnly:true}));
 const shravanBreakfast=breakfast.map(r=>({...r,premiumOptional:r.tags.includes('premium-optional'),wheyCompatibilityRequired:true}));
-const visible=recipesForPhase([...shravanBreakfast,...fakeLunches],'Breakfast','2026-08-12',{mode:'auto',showPremium:false,wheyCompatible:false});
+const all=[...shravanBreakfast,...fakeLunches];
+const visible=recipesForPhase(all,'Breakfast','2026-08-12',{mode:'auto',showPremium:false,wheyCompatible:false});
 assert(visible.length===8,'Premium breakfasts should be hidden by default.');
+assert(recipesForPhase(all,'Lunch','2026-08-11',{mode:'auto'}).length===10,'Canonical L1-L10 lunches must remain available in normal mode.');
+assert(recipesForPhase(all,'Lunch','2026-08-12',{mode:'auto'}).length===10,'Shravan must expose exactly L1-L10 as grain lunches.');
 assert(!recipeSelectable({...visible[0],wheyCompatibilityRequired:true},true,{wheyCompatible:false}),'Whey recipe should be locked until compatibility is confirmed.');
 console.log(`Validated Shravan phase: ${breakfast.length} breakfasts, ${snacks.length} snacks, ${topups.length} top-ups, ${fakeLunches.length} grain lunches.`);
